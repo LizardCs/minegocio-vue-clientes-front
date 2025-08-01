@@ -1,5 +1,11 @@
-# Vue 3 + TypeScript + Vite
+Vue 3 + Spring Boot
+Este proyecto utiliza Vue 3 como frontend moderno y Spring Boot como backend robusto, 
+Vue 3 permite el desarrollo de interfaces reactivas y dinámicas, mientras que Spring Boot proporciona una API REST segura y eficiente.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Para más información sobre la integración:
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+-Guía oficial de Vue 3
+
+- Documentación de Spring Boot
+
+- Guía para consumir APIs REST con Vue 3
