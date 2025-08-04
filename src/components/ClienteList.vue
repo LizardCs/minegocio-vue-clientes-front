@@ -9,7 +9,7 @@
 
     <DataTable :value="clientesOrdenados" dataKey="id" stripedRows paginator :rows="10"
       emptyMessage="No hay clientes registrados." tableStyle="min-width: 50rem">
-      <Column field="id" header="N" style="width: 3rem" headerClass="p-text-center" bodyClass="p-text-center"/>
+      <Column field="id" header="N" style="width: 3rem" headerClass="p-text-center" bodyClass="p-text-center" />
       <Column field="identificationType" header="Tipo" />
       <Column field="identificationNumber" header="ID o RUC" />
       <Column field="names" header="Nombre" />

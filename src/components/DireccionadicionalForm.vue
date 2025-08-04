@@ -15,7 +15,8 @@
         <InputText id="direccion" v-model="direccion" required />
       </div>
       <div>
-        <Button label="Guardar" icon="pi pi-check" type="submit" class="mr-2" style="background-color: #6ba4e7; border-color: #6ba4e7; color: white;" />
+        <Button label="Guardar" icon="pi pi-check" type="submit" class="mr-2"
+          style="background-color: #6ba4e7; border-color: #6ba4e7; color: white;" />
         <Button label="Cancelar" icon="pi pi-times" class="p-button-secondary" type="button" @click="cancelar" />
       </div>
     </form>
