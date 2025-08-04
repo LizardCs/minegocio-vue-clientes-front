@@ -1,48 +1,33 @@
 <template>
-  <div class="lista-general">
+  <div>
     <h2>Clientes Registrados</h2>
-
-    <div class="buscador">
-      <input v-model="filtro" type="text" placeholder="Buscar por cédula o nombre" />
-      <button @click="buscarCliente">Buscar</button>
-      <button @click="limpiarBusqueda">Limpiar</button>
+    <div class="buscador flex gap-2 mb-3">
+      <input v-model="filtro" type="text" placeholder="Buscar por cédula o nombre" class="p-inputtext p-component" />
+      <Button label="Buscar" style="background-color:  #6ba4e7; " icon="pi pi-search" @click="buscarCliente" />
+      <Button label="Limpiar" icon="pi pi-times" severity="secondary" @click="limpiarBusqueda" />
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>N</th>
-          <th>Tipo</th>
-          <th>ID o RUC</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Celular</th>
-          <th>Ciudad</th>
-          <th>Dirección</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="cliente in clientesOrdenados" :key="cliente.id">
-          <td>{{ cliente.id }}</td>
-          <td>{{ cliente.identificationType }}</td>
-          <td>{{ cliente.identificationNumber }}</td>
-          <td>{{ cliente.names }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.cellphone }}</td>
-          <td>{{ cliente.mainCity }}</td>
-          <td>{{ cliente.mainAddress }}</td>
-          <td>
-            <button class="btn-eliminar" @click="$emit('eliminar', cliente.id)">BORRAR</button>
-            <button class="btn-editar" @click="$emit('editar', cliente)">EDITAR</button>
-            <button class="btn-listarC" @click="$emit('adicionales', cliente)">DIR ADICIONALES</button>
-          </td>
-        </tr>
-        <tr v-if="clientesOrdenados.length === 0">
-          <td colspan="9" class="no-data">No hay clientes registrados.</td>
-        </tr>
-      </tbody>
-    </table>
+    <DataTable :value="clientesOrdenados" dataKey="id" stripedRows paginator :rows="10"
+      emptyMessage="No hay clientes registrados." tableStyle="min-width: 50rem">
+      <Column field="id" header="N" style="width: 3rem" headerClass="p-text-center" bodyClass="p-text-center"/>
+      <Column field="identificationType" header="Tipo" />
+      <Column field="identificationNumber" header="ID o RUC" />
+      <Column field="names" header="Nombre" />
+      <Column field="email" header="Email" />
+      <Column field="cellphone" header="Celular" />
+      <Column field="mainCity" header="Ciudad" />
+      <Column field="mainAddress" header="Dirección" />
+      <Column header="Acciones" headerClass="p-text-center" bodyClass="p-text-center">
+        <template #body="{ data }">
+          <div class="acciones-botones">
+            <Button icon="pi pi-trash" severity="danger" rounded aria-label="Eliminar"
+              @click="$emit('eliminar', data.id)" />
+            <Button icon="pi pi-pencil" severity="warning" rounded aria-label="Editar" @click="$emit('editar', data)" />
+            <Button label="DIR" icon="pi pi-map-marker" severity="info" @click="$emit('adicionales', data)" />
+          </div>
+        </template>
+      </Column>
+    </DataTable>
   </div>
 </template>
 
@@ -50,15 +35,9 @@
 import type { Cliente } from '../services/clienteservice'
 import { ref, computed } from 'vue'
 import { buscarClientes } from '../services/clienteservice'
-import type { Direccion } from '../services/direccionservice';
 
 const props = defineProps<{ clientes: Cliente[] }>()
 const emit = defineEmits(['update:clientes', 'eliminar', 'editar', 'adicionales', 'limpiar'])
-
-const mostrarFormularioDireccion = ref(false)
-const clienteSeleccionadoParaDirecciones = ref<Cliente | null>(null)
-const direccionesAdicionales = ref<Direccion[]>([])
-
 
 const filtro = ref('')
 const clientesFiltrados = ref<Cliente[] | null>(null)
@@ -82,13 +61,10 @@ async function buscarCliente() {
   }
 }
 
-
 function limpiarBusqueda() {
   filtro.value = ''
   clientesFiltrados.value = null
-  emit('limpiar')  
+  emit('limpiar')
 }
-
-
 
 </script>

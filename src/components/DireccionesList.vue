@@ -3,25 +3,12 @@
     <h2>Direcciones adicionales: {{ cliente?.names }}</h2>
 
     <div class="lista-general">
-
-      <table>
-        <thead>
-          <tr>
-            <th>Provincia</th>
-            <th>Ciudad</th>
-            <th>Dirección</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="dir in direcciones" :key="dir.id">
-            <td>{{ dir.provincia }}</td>
-            <td>{{ dir.ciudad }}</td>
-            <td>{{ dir.direccion }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <DataTable :value="direcciones" responsiveLayout="scroll" :showGridlines="true" class="p-datatable-sm">
+        <Column field="provincia" header="Provincia" />
+        <Column field="ciudad" header="Ciudad" />
+        <Column field="direccion" header="Dirección" />
+      </DataTable>
     </div>
-
   </div>
 </template>
 

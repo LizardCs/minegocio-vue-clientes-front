@@ -1,10 +1,9 @@
 <template>
-  <main>
-    <h1>Gestión de Clientes</h1>
+  <main class="p-4">
+    <h1 class="text-2xl font-bold mb-4">Gestión de Clientes</h1>
 
-    <button class="btn-nuevo" @click="toggleFormulario" v-if="!mostrarFormulario">
-      Nuevo Cliente
-    </button>
+    <!-- Botón Prime para mostrar formulario -->
+    <Button v-if="!mostrarFormulario" label="Nuevo Cliente" icon="pi pi-plus" class="mb-4" @click="toggleFormulario" style="background-color: #6ba4e7; border-color: #6ba4e7; color: white;" />
 
     <ClienteForm v-if="mostrarFormulario" :modelo="clienteSeleccionado" @guardado="guardarCliente"
       @cancelar="cancelarFormulario" />
@@ -17,11 +16,11 @@
       @cancelar="mostrarFormularioDireccion = false" />
 
     <DireccionesList :direcciones="direccionesAdicionales" :cliente="clienteSeleccionadoParaDirecciones" />
-    <div v-if="clienteSeleccionadoParaDirecciones" class="general">
-      <button class="btn-direccion" @click="mostrarFormularioAgregarDireccion">
-        Agregar Dirección Adicional
-      </button>
-    </div>  
+
+    <div v-if="clienteSeleccionadoParaDirecciones" class="general mt-3">
+      <Button label="Agregar Dirección Adicional" icon="pi pi-map-marker" class="btn-direccion"
+        @click="mostrarFormularioAgregarDireccion" style="background-color: #6ba4e7; border-color: #6ba4e7; color: white;" />
+    </div>
   </main>
 </template>
 

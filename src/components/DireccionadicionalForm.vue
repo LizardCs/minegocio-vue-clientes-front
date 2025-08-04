@@ -1,22 +1,22 @@
 <template>
-  <div class="form-general">
+  <div class="Centro">
     <h2>Agregar Dirección Adicional</h2>
-    <form @submit.prevent="guardar">
-      <div>
-        <label>Provincia:</label>
-        <input v-model="provincia" required />
+    <form @submit.prevent="guardar" class="p-fluid">
+      <div class="campo">
+        <label for="provincia">Provincia: </label>
+        <InputText id="provincia" v-model="provincia" required />
+      </div>
+      <div class="campo">
+        <label for="ciudad">Ciudad: </label>
+        <InputText id="ciudad" v-model="ciudad" required />
+      </div>
+      <div class="campo">
+        <label for="direccion">Dirección: </label>
+        <InputText id="direccion" v-model="direccion" required />
       </div>
       <div>
-        <label>Ciudad:</label>
-        <input v-model="ciudad" required />
-      </div>
-      <div>
-        <label>Dirección:</label>
-        <input v-model="direccion" required />
-      </div>
-      <div class="botones">
-        <button type="submit">Guardar nueva dirección</button>
-        <button type="button" @click="cancelar">Cancelar</button>
+        <Button label="Guardar" icon="pi pi-check" type="submit" class="mr-2" style="background-color: #6ba4e7; border-color: #6ba4e7; color: white;" />
+        <Button label="Cancelar" icon="pi pi-times" class="p-button-secondary" type="button" @click="cancelar" />
       </div>
     </form>
   </div>
@@ -63,4 +63,3 @@ const cancelar = () => {
   emit('cancelar')
 }
 </script>
-
